@@ -1,0 +1,27 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: codegen-rag-app
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+      - ./scripts:/app/scripts
+    working_dir: /app
+    command: ["bash", "./default-cmd.sh"]
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+  base:
+    build:
+      context: .
+      dockerfile: Dockerfile.base
+    image: codegen-rag-base
+    entrypoint: ["bash"]

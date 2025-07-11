@@ -1,0 +1,9 @@
+pinecone
+requests
+datasets
+pandas
+pyarrow
+python-dotenv
+sentence-transformers
+transformers
+pinecone-client
